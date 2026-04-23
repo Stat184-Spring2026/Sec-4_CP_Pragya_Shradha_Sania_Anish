@@ -11,7 +11,7 @@ Using publicly available datasets via the EPA and CDC, we explore whether higher
 
 ---
 
-## Interesting Insight (Optional)
+## Interesting Insight
 *To be added after analysis is completed.*
 
 ---
