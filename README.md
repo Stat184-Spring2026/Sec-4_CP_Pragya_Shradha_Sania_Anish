@@ -1,6 +1,5 @@
 # PM2.5 & Asthma Trends Analysis (U.S. States, 2016–2026)
 
-## Project Title
 This repository contains our group project analyzing the relationship between PM2.5 air pollution levels and asthma prevalence and mortality across U.S. states, with a focus on trends during and after the COVID-19 pandemic.
 
 ---
