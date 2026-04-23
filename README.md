@@ -35,6 +35,6 @@ These datasets are publicly available, real-world sources that can be linked by 
 ## Contact
 For questions or comments, please contact:
 - Pragya: pvs5791@psu.edu OR @pragyuh on GitHub
-- Shradha:
-- Sania:
-- Anish: 
+- Shradha: sqg6076@psu.edu OR @---- on GitHub
+- Sania: sjt5987@psu.edu OR @---- on GitHub
+- Anish: abc6715@psu.edu OR @----- on GitHub
