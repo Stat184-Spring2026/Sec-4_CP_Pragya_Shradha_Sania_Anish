@@ -1,0 +1,81 @@
+---
+title: "PM2.5 & Asthma Trends Analysis (U.S. States, 2016–2020)"
+author: "Pragya, Shradha, Sania, Anish"
+date: "April 25, 2026"
+format: html
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## Overview
+
+This report analyzes PM2.5 air pollution levels across U.S. states from 2016–2020.  
+The dataset was preprocessed and aggregated to state-year averages using CDC data.
+
+---
+
+```{r, include=FALSE}
+library(tidyverse)
+library(knitr)
+library(ggplot2)
+
+pm25_state <- read_csv("data/pm25_state_2016_2020.csv")
+```
+
+---
+
+## Summary Table
+
+The table below summarizes PM2.5 levels across all U.S. states for each year.
+
+```{r}
+pm25_summary <- pm25_state %>%
+  group_by(year) %>%
+  summarize(
+    avg_pm25 = mean(pm25, na.rm = TRUE),
+    min_pm25 = min(pm25, na.rm = TRUE),
+    max_pm25 = max(pm25, na.rm = TRUE)
+  )
+
+kable(
+  pm25_summary,
+  caption = "Summary of PM2.5 levels across U.S. states by year (2016–2020).",
+  col.names = c("Year", "Average PM2.5", "Minimum", "Maximum")
+)
+```
+
+---
+
+## PM2.5 Trends Over Time
+
+The figure below shows PM2.5 trends for all states, along with the national average trend.
+
+```{r}
+ggplot(pm25_state, aes(x = year, y = pm25, group = state)) +
+  geom_line(alpha = 0.3) +
+  stat_summary(aes(group = 1), fun = mean, geom = "line", linewidth = 1.5) +
+  labs(
+    title = "PM2.5 Levels Across U.S. States (2016–2020)",
+    x = "Year",
+    y = "PM2.5 Concentration"
+  ) +
+  theme_minimal()
+```
+
+---
+
+## Key Findings
+
+The summary table shows that average PM2.5 levels generally decreased from 2016 to 2018, followed by slight fluctuations through 2020. The minimum and maximum values indicate noticeable variation across states, suggesting that some regions consistently experience higher pollution levels than others.
+
+The visualization highlights both individual state trends and the national average. While many states follow similar patterns, there is still considerable variability, indicating regional differences in environmental conditions and policy effectiveness.
+
+Interestingly, 2020 does not show a dramatic reduction in PM2.5 levels despite widespread economic slowdowns during the COVID-19 pandemic. This suggests that air pollution levels are influenced by multiple factors beyond short-term reductions in human activity.
+
+---
+
+## Summary
+
+This dataset provides a state-level view of PM2.5 air pollution trends in the United States from 2016–2020. These findings will serve as a foundation for further analysis examining the relationship between air pollution, asthma prevalence, and asthma-related mortality.
