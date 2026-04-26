@@ -22,7 +22,13 @@ The datasets used in this project include:
 - PM2.5 air pollution data from the Environmental Protection Agency (EPA): https://www.epa.gov/outdoor-air-quality-data
 - USA Particulate Matter (PM) 2.5 between 1998-2016: https://hub.arcgis.com/maps/6f250198d8e4461db70a1b5f055172fb/about
 - Daily Census Tract-Level PM2.5 Concentrations, 2016-2020: https://ephtracking.cdc.gov/DataExplorer/?c=11
-- Asthma prevalence and mortality data from the Centers for Disease Control and Prevention (CDC): https://www.cdc.gov/asthma/most_recent_data_states.htm  
+- Asthma prevalence and mortality data from the Centers for Disease Control and Prevention (CDC): https://www.cdc.gov/asthma/most_recent_data_states.htm
+  - 2016 Archived State or Territory Asthma Data:
+  https://www.cdc.gov/asthma/archivedata/2016/2016-archived-data-states.html
+  - 2017 Archived State or Territory Asthma Data: https://www.cdc.gov/asthma/archivedata/2017/2017_archived_states_territory.html
+  - 2018 Archived State or Territory Asthma Data: https://www.cdc.gov/asthma/archivedata/2018/2018_archived_states_territory.html
+  - 2019 Archived State or Territory Asthma Data: https://www.cdc.gov/asthma/archivedata/2019/2019_archived_states_territory.html
+  - 2020 Archived State or Territory Asthma Data: https://www.cdc.gov/asthma/archivedata/2020/2020_archived_states_territory.html
 
 These datasets are publicly available, real-world sources that can be linked by state and year.
 
