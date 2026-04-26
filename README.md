@@ -47,18 +47,19 @@ For a more detailed breakdown of tasks, see `PLAN.md`.
 ---
 
 ## Repo Structure
-├── data/
-│   └── pm25_state_2016_2020.csv        # Cleaned PM2.5 dataset (state-year level)
-│
-├── reports/
-│   ├── 01_pm25_cleaning.qmd            # Data cleaning and preprocessing (PM2.5)
-│   ├── 01_pm25_cleaning.html           # Rendered PM2.5 report
-│
-├── README.md                           # Project overview and documentation
-├── PLAN.md                             # Detailed project plan and responsibilities
-├── .gitignore                          # Specifies files to ignore in version control
-├── .lintr                              # Linting rules for consistent R code style
 
+- `data/`
+  - `pm25_state_2016_2020.csv`: Cleaned PM2.5 dataset (state-year level)
+
+- `reports/`
+  - `01_pm25_cleaning.qmd`: Data cleaning and preprocessing (PM2.5)
+  - `01_pm25_cleaning.html`: Rendered PM2.5 report
+  - `02_analysis.qmd` / `02_analysis.html`: (To be added) Combined PM2.5 + asthma analysis
+
+- `README.md`: Project overview and documentation
+- `PLAN.md`: Detailed project plan including goals, steps, and responsibilities
+- `.gitignore`: Specifies files to ignore in version control
+- `.lintr`: Linting rules for consistent R code style
 ---
 
 ## Authors
