@@ -1,13 +1,13 @@
-# PM2.5 & Asthma Trends Analysis (U.S. States, 2016–2026)
+# PM2.5 & Asthma Trends Analysis (U.S. States, 2016–2020)
 
-This repository contains our group project analyzing the relationship between PM2.5 air pollution levels and asthma prevalence and mortality across U.S. states, with a focus on trends during and after the COVID-19 pandemic.
+This repository contains our group project analyzing the relationship between PM2.5 air pollution levels and asthma prevalence and mortality across U.S. states, with a focus on trends during the COVID-19 pandemic.
 
 ---
 
 ## Overview
-This project analyzes the relationship between PM2.5 air pollution levels and asthma prevalence and mortality across U.S. states. The project focuses on identifying trends over time, with particular attention to changes during and after the COVID-19 pandemic.
+This project analyzes the relationship between PM2.5 air pollution levels and asthma prevalence and mortality across U.S. states. The project focuses on identifying trends over time, with particular attention to changes during the COVID-19 pandemic.
 
-Using publicly available datasets via the EPA and CDC, we explore whether higher pollution levels are associated with worse asthma outcomes and how these relationships may have evolved from 2016–2026.
+Using publicly available datasets via the EPA, ArcGIS, CDC, we explore whether higher pollution levels are associated with worse asthma outcomes and how these relationships may have evolved from 2016–2020.
 
 ---
 
@@ -19,7 +19,9 @@ Using publicly available datasets via the EPA and CDC, we explore whether higher
 ## Data Sources and Acknowledgements
 The datasets used in this project include:
 
-- PM2.5 air pollution data from the Environmental Protection Agency (EPA): https://www.epa.gov/outdoor-air-quality-data  
+- PM2.5 air pollution data from the Environmental Protection Agency (EPA): https://www.epa.gov/outdoor-air-quality-data
+- USA Particulate Matter (PM) 2.5 between 1998-2016: https://hub.arcgis.com/maps/6f250198d8e4461db70a1b5f055172fb/about
+- Daily Census Tract-Level PM2.5 Concentrations, 2016-2020: https://ephtracking.cdc.gov/DataExplorer/?c=11
 - Asthma prevalence and mortality data from the Centers for Disease Control and Prevention (CDC): https://www.cdc.gov/asthma/most_recent_data_states.htm  
 
 These datasets are publicly available, real-world sources that can be linked by state and year.
@@ -27,9 +29,9 @@ These datasets are publicly available, real-world sources that can be linked by 
 ---
 
 ## Current Plan
-This project explores the relationship between PM2.5 air pollution levels and asthma prevalence across U.S. states from 2016–2026, with a focus on trends during and after COVID-19.
+This project explores the relationship between PM2.5 air pollution levels and asthma prevalence across U.S. states from 2016–2020, with a focus on trends during COVID-19.
 
-We will clean and merge datasets from the EPA and CDC, create key variables (e.g., average PM2.5 and asthma rates by state and year), and conduct exploratory data analysis using visualizations such as scatterplots, time series, and maps.
+We will clean and merge datasets from the EPA, ArcGIS, and CDC, create key variables (e.g., average PM2.5 and asthma rates by state and year), and conduct exploratory data analysis using visualizations such as scatterplots, time series, and maps.
 
 Our team will divide responsibilities across data cleaning, visualization, and analysis, then collaborate to interpret findings and produce a final reproducible report using Quarto.
 
