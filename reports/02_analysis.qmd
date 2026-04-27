@@ -1,0 +1,94 @@
+---
+title: "PM2.5 & Asthma Analysis"
+author: "Pragya, Shradha, Sania, Anish"
+date: "April 26, 2026"
+format:
+  html:
+    embed-resources: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## Overview
+
+This report analyzes the relationship between PM2.5 air pollution levels and asthma prevalence across U.S. states from 2016–2020. The goal is to explore whether higher air pollution is associated with higher asthma rates.
+
+---
+
+## Load and Merge Data
+
+```{r}
+library(tidyverse)
+
+pm25_state <- read_csv("data/pm25_state_2016_2020.csv")
+asthma_state <- read_csv("data/asthma_state_2016_2020.csv")
+
+combined_data <- pm25_state %>%
+  inner_join(asthma_state, by = c("state", "year"))
+```
+
+---
+
+## Preview Data
+
+```{r}
+head(combined_data)
+```
+
+---
+
+## PM2.5 vs Asthma Relationship
+
+```{r}
+ggplot(combined_data, aes(x = pm25, y = asthma_rate)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "PM2.5 vs Asthma Rates (U.S. States, 2016–2020)",
+    x = "PM2.5 Concentration",
+    y = "Asthma Prevalence (%)"
+  ) +
+  theme_minimal()
+```
+
+---
+
+## Trends Over Time
+
+This plot shows how average PM2.5 levels and asthma rates changed over time.
+
+```{r}
+ggplot(combined_data, aes(x = year)) +
+  stat_summary(aes(y = pm25), fun = mean, geom = "line", linewidth = 1.2) +
+  stat_summary(aes(y = asthma_rate), fun = mean, geom = "line", linewidth = 1.2) +
+  labs(
+    title = "Average PM2.5 and Asthma Trends (2016–2020)",
+    x = "Year",
+    y = "Average Value"
+  ) +
+  theme_minimal()
+```
+
+---
+
+## Correlation
+
+```{r}
+cor(combined_data$pm25, combined_data$asthma_rate, use = "complete.obs")
+```
+
+---
+
+## Key Findings
+
+The scatterplot suggests a positive relationship between PM2.5 levels and asthma rates, meaning that states with higher air pollution tend to have higher asthma prevalence. However, the relationship is not perfectly linear, indicating that other factors may also influence asthma outcomes.
+
+The time trend plot shows that both PM2.5 levels and asthma rates fluctuate over time, with no dramatic drop in 2020 despite reduced activity during the COVID-19 pandemic. This suggests that air pollution and asthma are influenced by multiple long-term factors beyond short-term changes.
+
+---
+
+## Summary
+
+This analysis provides evidence of a potential association between air pollution and asthma prevalence across U.S. states. While higher PM2.5 levels generally correspond to higher asthma rates, additional factors such as healthcare access, demographics, and environmental policies likely play a role. Further analysis could explore these relationships in more depth.
