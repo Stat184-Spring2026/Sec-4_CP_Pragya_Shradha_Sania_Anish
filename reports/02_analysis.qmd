@@ -102,6 +102,7 @@ This section visualizes how PM2.5 pollution and asthma prevalence vary across U.
 library(usmap)
 
 # Average values per state (2016–2020)
+# Calculating state-level averages
 state_avg <- combined_data %>%
   group_by(state) %>%
   summarize(
