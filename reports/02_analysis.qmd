@@ -119,3 +119,4 @@ plot_usmap(data = state_avg, values = "avg_asthma", regions = "states") +
   scale_fill_continuous(name = "Asthma Rate") +
   labs(title = "Average Asthma Prevalence by State (2016–2020)")
 These maps show that certain states consistently experience higher levels of air pollution and asthma prevalence. Regions with elevated PM2.5 levels often overlap with areas that report higher asthma rates, suggesting a possible geographic pattern in environmental health risks.
+These patterns highlight potential environmental health disparities across regions.
