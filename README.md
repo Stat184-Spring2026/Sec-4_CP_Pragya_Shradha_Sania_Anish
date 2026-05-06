@@ -61,7 +61,7 @@ For a more detailed breakdown of tasks, see `PLAN.md`.
 ---
 
 ## Repo Structure
-- `Branches`
+Branches
 - `Main`
   - `data/`
     - `asthma_state_2016_2020.csv`: Cleaned Asthma Rate dataset (state-year level)
