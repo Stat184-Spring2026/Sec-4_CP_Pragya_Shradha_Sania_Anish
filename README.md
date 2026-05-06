@@ -5,14 +5,19 @@ This repository contains our group project analyzing the relationship between PM
 ---
 
 ## Overview
-This project analyzes the relationship between PM2.5 air pollution levels and asthma prevalence and mortality across U.S. states. The project focuses on identifying trends over time, with particular attention to changes during the COVID-19 pandemic.
+This project investigates the relationship between PM2.5 air pollution levels and asthma prevalence across U.S. states from 2016–2020, with particular attention to changes during the COVID-19 pandemic.
 
-Using publicly available datasets via the EPA, ArcGIS, CDC, we explore whether higher pollution levels are associated with worse asthma outcomes and how these relationships may have evolved from 2016–2020.
+Using publicly available datasets from the EPA, CDC, and ArcGIS, we analyze how pollution levels and asthma outcomes evolved over time and across regions of the United States. While prior research often suggests that higher air pollution is associated with worse respiratory health outcomes, preliminary exploratory analysis in our project revealed a more complicated pattern during the COVID-19 period: PM2.5 levels declined in many states while asthma prevalence remained elevated or continued to rise.
+
+To better understand these trends, our project explores possible delayed or lagged relationships between pollution exposure and asthma outcomes, regional variation across states, and differences between pre-COVID and COVID-era trends. Through exploratory data analysis, visualization, and state-level comparisons, we aim to better understand how environmental and public health patterns interacted during a period of major societal disruption.
+
 
 ---
 
 ## Interesting Insight
-*To be added after analysis is completed.*
+One of the most interesting findings from our preliminary exploratory analysis was that the relationship between PM2.5 levels and asthma outcomes appeared to be more complex than we initially expected. While we originally planned to focus only on direct year-by-year comparisons between pollution levels and asthma prevalence, some of our early visualizations suggested that changes in asthma outcomes did not immediately match changes in PM2.5 levels.
+
+In particular, we observed that PM2.5 levels declined in many states during the COVID-19 period while asthma prevalence often remained elevated or continued to increase. This led us to consider whether pollution exposure may have delayed or lagged effects on respiratory health outcomes rather than purely immediate effects. As a result, our project expanded to explore possible lagged relationships between PM2.5 exposure and asthma trends across U.S. states.
 
 ---
 
