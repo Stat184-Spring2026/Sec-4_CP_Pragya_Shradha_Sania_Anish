@@ -71,8 +71,8 @@ Branches
   - `reports/`
     - `01_pm25_cleaning.qmd`: Data cleaning and preprocessing (PM2.5)
     - `01_pm25_cleaning.pdf`: Rendered PM2.5 report
-    - `02_analysis.pdf`: 
-    - `02_analysis.qmd`:
+    - `02_analysis.pdf`: Analysis
+    - `02_analysis.qmd`: Analysis report
   - `README.md`: Project overview and documentation
   - `PLAN.md`: Detailed project plan including goals, steps, and responsibilities
   - `.gitignore`: Specifies files to ignore in version control
