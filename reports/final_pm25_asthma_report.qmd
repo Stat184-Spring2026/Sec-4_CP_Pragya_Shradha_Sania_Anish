@@ -1,0 +1,661 @@
+---
+title: "PM2.5 Air Pollution and Asthma Trends Across U.S. States: Exploratory Analysis Before and During COVID-19 (2016–2020)"
+author: "Pragya Sinha, Shradha Gudiseva, Anish Chitnis"
+date: "May 6, 2026"
+
+format:
+  pdf:
+    toc: true
+
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+# Introduction
+
+Air pollution remains one of the most significant environmental health concerns in the United States. Among common pollutants, fine particulate matter known as PM2.5 has received particular attention due to its ability to penetrate deep into the respiratory system and contribute to a variety of adverse health outcomes. Previous research has linked elevated PM2.5 exposure to respiratory illnesses, cardiovascular disease, and increased hospitalization risk, especially among vulnerable populations.
+
+Asthma is one of the most common chronic respiratory conditions in the United States and affects millions of individuals each year. Because asthma directly impacts the respiratory system, environmental conditions such as air quality may influence asthma prevalence and severity. Understanding how pollution levels relate to asthma outcomes may help improve public health awareness and guide future environmental policy decisions.
+
+The COVID-19 pandemic introduced a unique period of environmental and behavioral change across the United States. During 2020, many regions experienced reduced traffic, economic slowdowns, and temporary declines in industrial activity. As a result, some studies observed reductions in air pollution levels during portions of the pandemic. However, respiratory health outcomes such as asthma prevalence did not always appear to decline in the same way. This raised important questions regarding whether the relationship between PM2.5 and asthma outcomes may be more complex than immediate same-year comparisons suggest.
+
+This project explores the relationship between PM2.5 air pollution levels and asthma prevalence across U.S. states from 2016–2020. Using publicly available datasets from the EPA, CDC, and ArcGIS, we conducted exploratory data analysis to investigate pollution trends, asthma outcomes, COVID-era changes, and possible lagged relationships between pollution exposure and asthma prevalence.
+
+# Data Sources and Data Cleaning
+
+This project combines multiple publicly available datasets related to air pollution and asthma prevalence across U.S. states. PM2.5 air pollution data were collected and maintained by the Environmental Protection Agency (EPA) and the CDC Environmental Public Health Tracking Network. These datasets measure annual fine particulate matter (PM2.5) concentrations through the Air Quality System (AQS), a national network of ambient air quality monitors, supplemented by modeled environmental estimates to fill geographic gaps. Additional geographic and mapping resources were obtained from ArcGIS to support spatial visualization.  
+
+Asthma prevalence data were collected by the Centers for Disease Control and Prevention (CDC) primarily through the Behavioral Risk Factor Surveillance System (BRFSS), a state-based system of health-related telephone surveys. These datasets were created between 2016 and 2020 to monitor respiratory health outcomes and guide public health policy. As these are official government datasets, they are within the public domain, and the team has the legal right to use them for this analysis.
+
+The datasets were cleaned and standardized before analysis. State identifiers and formatting were adjusted to ensure compatibility, including converting state FIPS codes into state abbreviations. Observations were filtered to include the years 2016–2020, and missing or incomplete values were handled during preprocessing. After cleaning, the datasets were merged into a unified state-year dataset containing PM2.5 levels, asthma prevalence measures, and COVID-era comparison variables. Additional variables were created to support exploratory analysis, including year-over-year changes and lagged PM2.5 measures representing previous-year pollution exposure.
+
+The datasets used in this project generally satisfy FAIR principles because they are publicly accessible, well-documented, and distributed through established government repositories. However, the data do not fully address CARE principles because they focus primarily on broad population-level environmental and health measures rather than community-centered data governance or equity-focused data stewardship.
+
+# Geographic Patterns
+
+## Average Asthma Mortality Rates by State
+
+![Choropleth map of average asthma mortality rates across U.S. states from 2016–2020, with darker blue states representing higher mortality rates.](final_pm25_asthma_report_files/top_10_states_mortality_map.png)
+
+Figure 1 highlights substantial regional variation in asthma mortality rates across the United States. Several states in the South, Southwest, and Pacific regions displayed comparatively elevated asthma mortality rates during the study period, while many Midwestern and Northeastern states exhibited relatively lower mortality levels.\
+\
+These geographic differences suggest that asthma outcomes are likely influenced by broader regional factors beyond PM2.5 exposure alone. Variability in healthcare access, socioeconomic conditions, environmental policy, urbanization, climate, and demographic composition may all contribute to differences in respiratory health outcomes across states.\
+\
+The map also reinforces one of the broader conclusions of this project: environmental health relationships are complex and cannot be fully explained through pollution exposure alone.
+
+------------------------------------------------------------------------
+
+## States with the Highest Average Asthma Mortality Rates
+
+![Table displaying the ten U.S. states with the highest average asthma mortality rates between 2016 and 2020, including Hawaii, Mississippi, and New Mexico.](final_pm25_asthma_report_files/top_10_states_vs_mortality_table.png) 
+
+Figure 2 summarizes the states with the highest average asthma mortality rates during the study period. Hawaii and Mississippi displayed the highest average mortality rates, followed by states such as New Mexico, New York, and Nebraska.\
+\
+Interestingly, several of the states with elevated asthma mortality rates did not consistently correspond to the states with the highest PM2.5 concentrations observed earlier in the analysis. This further supports the conclusion that asthma mortality is influenced by a wide range of environmental, healthcare-related, and socioeconomic factors beyond pollution exposure alone.\
+\
+Overall, the geographic mortality analysis highlights the importance of considering regional variation when studying respiratory health outcomes and suggests that future research should incorporate additional demographic and structural variables to better understand differences in asthma mortality across the United States.
+
+# Exploratory Analysis of PM2.5 and Asthma Relationships
+
+## Annual Correlation Between PM2.5 and Asthma Rates
+
+![Line graph showing yearly Pearson correlations between PM2.5 levels and asthma prevalence from 2016–2020, with all correlations remaining slightly negative over time.](final_pm25_asthma_report_files/correlation_by_year.png)
+
+Figure 3 summarizes the annual Pearson correlation between PM2.5 concentrations and asthma prevalence across states from 2016–2020. All yearly correlations were negative, suggesting that states with higher PM2.5 levels did not consistently exhibit higher asthma prevalence during the study period.
+
+The weakest negative correlation occurred in 2016, while the strongest negative relationship appeared in 2017. However, none of the observed correlations were particularly strong, indicating that the direct relationship between PM2.5 and asthma prevalence may be more complex than originally expected.
+
+These findings motivated additional exploratory analysis examining geographic patterns, COVID-era changes, and possible lagged effects between pollution exposure and respiratory outcomes.
+
+------------------------------------------------------------------------
+
+## PM2.5 and Asthma Relationships by Year
+
+![Faceted scatterplots displaying the relationship between PM2.5 concentrations and asthma prevalence for each year from 2016–2020 across U.S. states.](final_pm25_asthma_report_files/faceted_pm25_asthma.png)
+
+Figure 4 compares PM2.5 concentrations and asthma prevalence across U.S. states for each year from 2016–2020. Each point represents a single state, while the dashed regression lines summarize the overall yearly relationship between pollution and asthma outcomes.
+
+Across all years, the relationship between PM2.5 and asthma prevalence appears relatively weak and somewhat inconsistent. Although several states with elevated asthma prevalence also exhibited moderate PM2.5 concentrations, many states did not follow a clear linear pattern.
+
+The regression lines generally display slight negative slopes, supporting the earlier correlation analysis. These results suggest that PM2.5 exposure alone may not fully explain variation in asthma prevalence across states and that additional demographic, environmental, and socioeconomic factors likely contribute to respiratory health outcomes.
+
+------------------------------------------------------------------------
+
+## Annual PM2.5 Trends Across States
+
+![Multi-line plot showing PM2.5 concentration trends across selected U.S. states from 2016–2020, illustrating variation in pollution levels over time.](final_pm25_asthma_report_files/multiline_pm25.png)
+
+Figure 5 tracks annual PM2.5 concentrations across several states between 2016 and 2020. The figure highlights substantial variation in pollution trends across states and years.\
+\
+While some states displayed relatively stable PM2.5 levels throughout the study period, others experienced noticeable fluctuations. Several states showed temporary declines around 2019–2020, potentially reflecting reduced transportation activity and economic slowdowns during the COVID-19 pandemic.\
+\
+The variability observed across states reinforces the importance of geographic and regional differences when analyzing environmental health outcomes. These differences may partially explain why asthma prevalence does not consistently align with pollution levels in the earlier visualizations.
+
+------------------------------------------------------------------------
+
+## State Rankings by Average Asthma Prevalence
+
+![Table ranking U.S. states by average asthma prevalence during the 2016–2020 study period.](final_pm25_asthma_report_files/asthmavspm25table.png)
+
+Figure 6 summarizes average asthma prevalence rates and PM2.5 concentrations across U.S. states during the study period and displays the results in a table. States were ranked according to average asthma prevalence, allowing for direct comparison between respiratory health outcomes and pollution exposure.\
+\
+Several states with elevated asthma prevalence also exhibited moderate to high PM2.5 concentrations. However, the rankings further reinforce that asthma prevalence does not consistently increase alongside pollution levels. For example, some states with relatively lower PM2.5 concentrations still displayed comparatively high asthma prevalence rates.\
+\
+The ranking patterns support the broader findings from the exploratory analysis and scatterplots, suggesting that PM2.5 exposure alone may not fully explain differences in asthma prevalence across states. Geographic, demographic, healthcare-related, and socioeconomic factors likely contribute substantially to respiratory health variation between regions.
+
+# COVID-Era Changes and Lagged PM2.5 Analysis
+
+## COVID-Era Changes in PM2.5 and Asthma Rates
+
+![Scatterplot comparing state-level changes in PM2.5 levels and asthma prevalence from 2019 to 2020, including a fitted linear trend line showing a weak relationship.](final_pm25_asthma_report_files/coviderachanges.png)
+
+Figure 7 compares changes in PM2.5 concentrations and asthma prevalence across U.S. states between 2019 and 2020. Each point represents a single state, while the fitted trend line summarizes the overall relationship between pollution changes and asthma rate changes during the COVID-19 period.\
+\
+The visualization shows substantial variability across states. While several states experienced reductions in PM2.5 concentrations during 2020, asthma prevalence did not consistently decline alongside those reductions. In fact, some states exhibited increasing asthma prevalence despite lower PM2.5 exposure.\
+\
+The relatively weak trend observed in the scatterplot suggests that short-term changes in pollution levels may not immediately correspond to changes in respiratory health outcomes. These findings motivated additional investigation into possible delayed or lagged environmental effects.
+
+------------------------------------------------------------------------
+
+## COVID-Era PM2.5 Declines and Asthma Changes
+
+![Formatted table showing the ten states with the largest declines in PM2.5 levels between 2019 and 2020 alongside corresponding asthma prevalence changes.](final_pm25_asthma_report_files/covid_summary_table.png)
+
+Figure 8 summarizes the states that experienced the largest decreases in PM2.5 concentrations during the COVID-19 period. Although many states saw measurable reductions in pollution levels, asthma prevalence changes were considerably more mixed.
+
+For example, Washington D.C., Maryland, and Ohio experienced declines in both PM2.5 concentrations and asthma prevalence. However, states such as Georgia and West Virginia exhibited increasing asthma prevalence despite reductions in PM2.5 levels. These inconsistent patterns reinforce the broader conclusion that asthma outcomes are likely influenced by multiple interacting environmental and demographic factors.
+
+The table also supports the possibility that respiratory health outcomes may respond to environmental changes over longer periods of time rather than strictly within the same year. As a result, the project expanded to explore possible lagged relationships between PM2.5 exposure and asthma prevalence.
+
+------------------------------------------------------------------------
+
+## Exploring Possible Lagged Relationships Between PM2.5 and Asthma
+
+The COVID-era analysis revealed that reductions in PM2.5 concentrations did not consistently correspond with reductions in asthma prevalence across states. While many states experienced temporary declines in pollution levels during 2020, asthma rates often remained stable or even increased.
+
+These findings suggest that respiratory health outcomes may respond more slowly to environmental improvements than initially expected. Additionally, the results indicate that asthma prevalence is likely influenced by multiple interacting factors beyond air pollution alone, including healthcare access, socioeconomic conditions, smoking prevalence, housing quality, and regional demographic differences.
+
+The mixed COVID-era patterns motivated further discussion regarding delayed or cumulative environmental effects and highlight the complexity of studying long-term respiratory health outcomes using short-term observational data.
+
+# Discussion and Limitations
+
+When we first began this project, we expected to observe a relatively clear relationship between PM2.5 concentrations and asthma prevalence across U.S. states. Because PM2.5 exposure has frequently been linked to respiratory health concerns in prior research, our initial assumption was that states with higher pollution levels would generally display higher asthma prevalence and mortality rates.
+
+Originally, our project scope extended from 2016–2026. However, as we began exploring the available data, we decided to narrow the analysis and focus more specifically on the COVID-19 period. The COVID-19 pandemic represented a unique environmental and social event during which transportation activity, industrial production, and general mobility declined significantly across many regions of the United States. As a result, we expected to observe noticeable reductions in PM2.5 concentrations alongside corresponding improvements in respiratory health outcomes.
+
+However, the exploratory analysis revealed that the relationship between PM2.5 concentrations and asthma prevalence was considerably more complex than we initially anticipated. Although several states experienced reductions in pollution levels during the COVID-19 period, asthma prevalence did not consistently decline alongside those environmental changes. In some cases, asthma rates remained relatively stable or even increased despite lower PM2.5 exposure.
+
+These observations motivated our decision to explore the possibility of delayed or lagged environmental effects. Because asthma is a chronic respiratory condition, it may be unrealistic to expect changes in pollution exposure to immediately translate into measurable changes in asthma prevalence within the same year. This reasoning led us to investigate whether previous-year pollution exposure might better capture the relationship between environmental conditions and respiratory health outcomes.
+
+While the lagged analysis still revealed only modest relationships between PM2.5 exposure and asthma prevalence, it reinforced the broader conclusion that respiratory health outcomes are influenced by many interacting factors beyond pollution exposure alone.
+
+One of the largest limitations of this project was the inability to fully account for potential confounding variables within the available timeframe. Factors such as socioeconomic status, healthcare access, smoking prevalence, urbanization, housing conditions, occupational exposure, demographic variation, and regional environmental differences may all substantially influence asthma prevalence independently of PM2.5 concentrations.
+
+Additionally, differences in environmental policy, public health infrastructure, and behavioral responses across states may have further complicated interpretation of COVID-era trends. Political and social factors may also indirectly shape environmental outcomes and public health patterns through differences in policy priorities, healthcare systems, and public responses to environmental concerns.
+
+Another important limitation is that this project relied primarily on aggregated state-level data. State-level averages may obscure important local variation within individual regions, cities, or counties. More detailed geographic analysis using county-level or census-tract-level data could potentially provide stronger insight into environmental health relationships.
+
+Finally, this project focused primarily on exploratory visualization and descriptive analysis rather than formal statistical or causal modeling. As a result, the findings should not be interpreted as establishing direct causal relationships between PM2.5 exposure and asthma prevalence. Instead, the project serves as an exploratory investigation into how publicly available environmental and health datasets can be used to examine complex respiratory health trends across the United States.
+
+# Conclusion
+
+This project explored the relationship between PM2.5 air pollution levels and asthma prevalence across U.S. states from 2016–2020, with particular focus on changes during the COVID-19 pandemic. Using publicly available environmental and public health datasets, we conducted exploratory analysis to investigate pollution trends, asthma outcomes, and possible delayed relationships between environmental exposure and respiratory health.
+
+Although we initially expected to observe a strong direct relationship between PM2.5 concentrations and asthma prevalence, the results revealed a considerably more complex pattern. While some states with elevated pollution levels also displayed higher asthma prevalence, the overall relationship between PM2.5 exposure and asthma outcomes appeared relatively weak and inconsistent across years.
+
+The COVID-19 period provided particularly interesting insight into these environmental health relationships. Despite temporary declines in PM2.5 concentrations during 2020, asthma prevalence did not consistently decrease across states. These findings suggested that respiratory health outcomes may not immediately respond to short-term environmental improvements and motivated further discussion regarding delayed or lagged environmental effects.
+
+Overall, the project demonstrated that asthma prevalence is likely influenced by a wide range of interacting environmental, demographic, healthcare, and socioeconomic factors beyond pollution exposure alone. While the exploratory analysis did not establish causal relationships, it highlighted the complexity of studying long-term respiratory health outcomes using observational environmental data.
+
+Future research could expand this analysis using longer time horizons, more detailed geographic data, demographic controls, and formal statistical modeling techniques to better understand how pollution exposure influences respiratory health over time. Despite the project’s limitations, the analysis provides insight into how publicly available datasets can be used to explore important environmental and public health questions in the United States.
+
+# Author Contributions
+
+Pragya Sinha coordinated the overall project structure, performed data cleaning and integration, conducted COVID-era and lagged PM2.5 analysis, and finalized the written report and visual formatting.
+
+Shradha Gudiseva contributed to exploratory data analysis, figure interpretation, and report editing.
+
+Anish Chitnis contributed to correlation analysis, PM2.5 trend visualizations, and code review.
+
+# Code Appendix
+
+## Appendix A: Average Asthma Mortality Rates by State
+
+``` r
+# Primary Author: Shradha Gudiseva
+# Reviewer: Pragya Sinha, Anish Chitnis
+# Style Guide: Tidyverse Style Guide
+
+library(tidyverse)
+library(usmap)
+
+mortality <- read_csv("mortality_state_2016_2020.csv")
+
+mortality_clean <- mortality %>%
+  filter(
+    year >= 2016,
+    year <= 2020,
+    death_rate_per_million != "Suppressed",
+    death_rate_per_million != "Unreliable"
+  ) %>%
+  mutate(
+    death_rate_per_million = as.numeric(death_rate_per_million)
+  )
+
+# Average mortality rate across 2016–2020 for each state
+mortality_avg <- mortality_clean %>%
+  group_by(state) %>%
+  summarise(
+    avg_death_rate = mean(death_rate_per_million, na.rm = TRUE)
+  )
+
+# Choropleth map
+plot_usmap(
+  data = mortality_avg,
+  values = "avg_death_rate",
+  regions = "states"
+) +
+  scale_fill_continuous(
+    name = "Avg Death Rate"
+  ) +
+  labs(
+    title = "Average Asthma Mortality Rate by State (2016–2020)"
+  ) +
+  theme(legend.position = "right")
+```
+
+------------------------------------------------------------------------
+
+## Appendix B: States with the Highest Average Asthma Mortality Rates
+
+``` r
+# Primary Author: Shradha Gudiseva
+# Reviewer: Pragya Sinha, Anish Chitnis
+# Style Guide: Tidyverse Style Guide
+
+library(tidyverse)
+
+mortality <- read_csv("mortality_state_2016_2020.csv")
+
+# Clean mortality data
+top10_table <- mortality %>%
+  filter(
+    death_rate_per_million != "Suppressed",
+    death_rate_per_million != "Unreliable"
+  ) %>%
+  mutate(
+    death_rate_per_million = as.numeric(death_rate_per_million)
+  ) %>%
+  filter(year >= 2016, year <= 2020) %>%
+  group_by(state) %>%
+  summarise(
+    average_death_rate =
+      round(mean(death_rate_per_million, na.rm = TRUE), 1)
+  ) %>%
+  arrange(desc(average_death_rate)) %>%
+  slice(1:10)
+
+# Print final table
+print(top10_table)
+
+View(top10_table)
+```
+
+------------------------------------------------------------------------
+
+## Appendix C: PM2.5 and Asthma Relationships by Year
+
+``` r
+# Primary Author: Anish Chitnis
+# Reviewer: Pragya Sinha, Shradha Gudiseva
+# Style Guide: Tidyverse Style Guide
+
+library(tidyverse)
+
+pm25_raw <- read_csv("pm25_state_2016_2020.csv")
+asthma_raw <- read_csv("asthma_state_2016_2020.csv")
+
+ggplot(df, aes(x = pm25, y = asthma_rate)) +
+  geom_point(
+    aes(color = asthma_rate),
+    size = 2,
+    alpha = 0.75
+  ) +
+
+  geom_smooth(
+    method = "lm",
+    se = TRUE,
+    color = "firebrick",
+    linewidth = 0.8,
+    linetype = "dashed"
+  ) +
+
+  scale_color_viridis_c(
+    option = "magma",
+    direction = -1,
+    name = "Asthma\nRate (%)"
+  ) +
+
+  facet_wrap(~ year, nrow = 1) +
+
+  labs(
+    title = "PM2.5 vs. Asthma Rate by Year (2016–2020)",
+    subtitle = "Each point = one state; dashed line = OLS trend",
+    x = "PM2.5 (µg/m³)",
+    y = "Asthma Rate (%)"
+  ) +
+
+  theme_bw(base_size = 12) +
+
+  theme(
+    plot.title = element_text(face = "bold"),
+    strip.background =
+      element_rect(fill = "steelblue", color = NA),
+
+    strip.text =
+      element_text(color = "white", face = "bold"),
+
+    legend.position = "right"
+  )
+
+ggsave(
+  "faceted_pm25_asthma.png",
+  width = 14,
+  height = 4.5,
+  dpi = 150
+)
+```
+
+------------------------------------------------------------------------
+
+## Appendix D: Annual PM2.5 Trends Across States
+
+``` r
+# Primary Author: Anish Chitnis
+# Reviewer: Pragya Sinha, Shradha Gudiseva
+# Style Guide: Tidyverse Style Guide
+
+library(tidyverse)
+
+# Load the data
+pm25_raw <- read_csv("pm25_state_2016_2020.csv")
+asthma_raw <- read_csv("asthma_state_2016_2020.csv")
+
+fips_to_state <- tibble(
+  statefips = c(
+    1,2,4,5,6,8,9,10,12,13,15,16,17,18,19,20,21,
+    22,23,24,25,26,27,28,29,30,31,32,33,34,35,
+    36,37,38,39,40,41,42,44,45,46,47,48,49,50,
+    51,53,54,55,56
+  ),
+
+  state = c(
+    "AL","AK","AZ","AR","CA","CO","CT","DE","FL",
+    "GA","HI","ID","IL","IN","IA","KS","KY","LA",
+    "ME","MD","MA","MI","MN","MS","MO","MT","NE",
+    "NV","NH","NJ","NM","NY","NC","ND","OH","OK",
+    "OR","PA","RI","SC","SD","TN","TX","UT","VT",
+    "VA","WA","WV","WI","WY"
+  )
+)
+
+pm25_named <- pm25_raw |>
+  left_join(fips_to_state, by = "statefips")
+
+# Merge datasets
+df <- inner_join(
+  asthma_raw,
+  pm25_named,
+  by = c("state", "year")
+)
+
+# Select top 10 states by average PM2.5
+top10 <- df |>
+  group_by(state) |>
+  summarise(avg_pm25 = mean(pm25)) |>
+  slice_max(avg_pm25, n = 10) |>
+  pull(state)
+
+df_top <- df |>
+  filter(state %in% top10)
+
+# Plot code
+ggplot(
+  df_top,
+  aes(
+    x = year,
+    y = pm25,
+    color = state,
+    group = state
+  )
+) +
+
+  geom_line(linewidth = 1.1) +
+  geom_point(size = 2.5) +
+
+  scale_color_brewer(palette = "Paired") +
+
+  scale_x_continuous(breaks = 2016:2020) +
+
+  labs(
+    title =
+      "Annual PM2.5 Levels — Top 10 States (2016–2020)",
+
+    subtitle =
+      "States ranked by average PM2.5 concentration",
+
+    x = "Year",
+    y = "PM2.5 (µg/m³)",
+    color = "State"
+  ) +
+
+  theme_minimal(base_size = 13) +
+
+  theme(
+    plot.title = element_text(face = "bold"),
+    legend.position = "right"
+  )
+
+ggsave(
+  "multiline_pm25.png",
+  width = 9,
+  height = 5.5,
+  dpi = 150
+)
+```
+
+------------------------------------------------------------------------
+
+## Appendix E: State Rankings by Average Asthma Prevalence
+
+``` r
+# Primary Author: Anish Chitnis
+# Reviewer: Pragya Sinha, Shradha Gudiseva
+# Style Guide: Tidyverse Style Guide
+
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+
+fips_to_state <- tibble(
+  statefips = c(
+    1,2,4,5,6,8,9,10,12,13,15,16,17,18,19,20,
+    21,22,23,24,25,26,27,28,29,30,31,32,33,
+    34,35,36,37,38,39,40,41,42,44,45,46,47,
+    48,49,50,51,53,54,55,56
+  ),
+
+  state = c(
+    "AL","AK","AZ","AR","CA","CO","CT","DE","FL",
+    "GA","HI","ID","IL","IN","IA","KS","KY","LA",
+    "ME","MD","MA","MI","MN","MS","MO","MT","NE",
+    "NV","NH","NJ","NM","NY","NC","ND","OH","OK",
+    "OR","PA","RI","SC","SD","TN","TX","UT","VT",
+    "VA","WA","WV","WI","WY"
+  )
+)
+
+pm25_named <- pm25_raw |>
+  left_join(fips_to_state, by = "statefips")
+
+combined <- inner_join(
+  asthma_raw,
+  pm25_named,
+  by = c("state", "year")
+) |>
+
+  group_by(state) |>
+
+  summarise(
+    pm25_avg = mean(pm25),
+    asthma_avg = mean(asthma_rate)
+  ) |>
+
+  mutate(
+    asthma_tier = case_when(
+      asthma_avg > 11 ~ "High",
+      asthma_avg < 9  ~ "Low",
+      TRUE            ~ "Medium"
+    )
+  )
+
+combined %>%
+  arrange(desc(asthma_avg)) %>%
+  mutate(
+    pm25_avg = round(pm25_avg, 2),
+    asthma_avg = round(asthma_avg, 2),
+    PM25_rank = rank(-pm25_avg),
+    Asthma_rank = rank(-asthma_avg)
+  ) %>%
+  select(
+    State = state,
+    `Avg PM2.5 (µg/m³)` = pm25_avg,
+    `PM2.5 Rank` = PM25_rank,
+    `Avg Asthma Rate (%)` = asthma_avg,
+    `Asthma Rank` = Asthma_rank,
+    `Asthma Tier` = asthma_tier
+  ) %>%
+  kable(
+    align = c("l","r","r","r","r","l")
+  ) %>%
+
+  kable_styling(
+    bootstrap_options =
+      c("striped", "hover", "condensed"),
+
+    full_width = FALSE,
+    font_size = 13
+  )
+```
+
+------------------------------------------------------------------------
+
+## Appendix F: COVID-Era Changes in PM2.5 and Asthma Rates
+
+```r
+# Primary Author: Pragya Sinha
+# Reviewer: Anish Chitnis, Shradha Gudiseva
+# Style Guide: Tidyverse Style Guide
+
+library(tidyverse)
+library(ggplot2)
+library(knitr)
+
+# Load datasets
+asthma_data <- read_csv(
+  "data/asthma_state_2016_2020.csv"
+)
+
+pm25_data <- read_csv(
+  "data/pm25_state_2016_2020.csv"
+)
+
+# Create COVID change dataset
+covid_changes <- merged_data %>%
+  filter(year %in% c(2019, 2020)) %>%
+  select(state, year, asthma_rate, pm25) %>%
+  pivot_wider(
+    names_from = year,
+    values_from = c(asthma_rate, pm25)
+  ) %>%
+
+  mutate(
+    asthma_change =
+      asthma_rate_2020 - asthma_rate_2019,
+
+    pm25_change =
+      pm25_2020 - pm25_2019
+  )
+
+# Create COVID difference plot
+ggplot(
+  covid_changes,
+  aes(
+    x = pm25_change,
+    y = asthma_change
+  )
+) +
+
+  geom_point(
+    size = 3,
+    alpha = 0.7,
+    color = "#8B4513"
+  ) +
+
+  geom_smooth(
+    method = "lm",
+    se = FALSE,
+    color = "#2F4F4F",
+    linewidth = 1.2
+  ) +
+
+  labs(
+    title =
+      "COVID-Era Changes in PM2.5 and Asthma Rates",
+
+    subtitle =
+      "State-level changes from 2019 to 2020",
+
+    x = "Change in PM2.5 Level",
+    y = "Change in Asthma Rate (%)"
+  ) +
+
+  theme_minimal()
+```
+
+------------------------------------------------------------------------
+
+## Appendix G: COVID-Era PM2.5 Declines and Asthma Changes
+
+```r
+# Primary Author: Pragya Sinha
+# Reviewer: Anish Chitnis, Shradha Gudiseva
+# Style Guide: Tidyverse Style Guide
+
+library(tidyverse)
+library(gt)
+library(webshot2)
+
+top_declines %>%
+
+  gt() %>%
+
+  tab_header(
+    title =
+      "COVID-Era PM2.5 Declines and Asthma Changes",
+
+    subtitle =
+      "Top 10 states with largest PM2.5 decreases (2019–2020)"
+  ) %>%
+
+  cols_label(
+    state = "State",
+    pm25_2019 = "PM2.5 (2019)",
+    pm25_2020 = "PM2.5 (2020)",
+    pm25_change = "PM2.5 Change",
+    asthma_rate_2019 = "Asthma Rate (2019)",
+    asthma_rate_2020 = "Asthma Rate (2020)",
+    asthma_change = "Asthma Change"
+  ) %>%
+
+  fmt_number(
+    columns = c(
+      pm25_2019,
+      pm25_2020,
+      pm25_change,
+      asthma_rate_2019,
+      asthma_rate_2020,
+      asthma_change
+    ),
+    decimals = 2
+  ) %>%
+
+  tab_source_note(
+    source_note =
+      "Source: EPA PM2.5 data and CDC asthma prevalence data."
+  ) %>%
+
+  gtsave("covid_summary_table.png")
+```
+
+# References
+
+ArcGIS Hub. (n.d.). *USA particulate matter (PM) 2.5 between 1998–2016*. <https://hub.arcgis.com/maps/6f250198d8e4461db70a1b5f055172fb/about>
+
+Centers for Disease Control and Prevention. (2016). *2016 archived state or territory asthma data*. <https://www.cdc.gov/asthma/archivedata/2016/2016-archived-data-states.html>
+
+Centers for Disease Control and Prevention. (2017). *2017 archived state or territory asthma data*. <https://www.cdc.gov/asthma/archivedata/2017/2017_archived_states_territory.html>
+
+Centers for Disease Control and Prevention. (2018). *2018 archived state or territory asthma data*. <https://www.cdc.gov/asthma/archivedata/2018/2018_archived_states_territory.html>
+
+Centers for Disease Control and Prevention. (2019). *2019 archived state or territory asthma data*. <https://www.cdc.gov/asthma/archivedata/2019/2019_archived_states_territory.html>
+
+Centers for Disease Control and Prevention. (2020). *2020 archived state or territory asthma data*. <https://www.cdc.gov/asthma/archivedata/2020/2020_archived_states_territory.html>
+
+Centers for Disease Control and Prevention. (n.d.). *Daily census tract-level PM2.5 concentrations, 2016–2020*. <https://ephtracking.cdc.gov/DataExplorer/?c=11>
+
+Centers for Disease Control and Prevention. (n.d.). *Most recent asthma state or territory data*. <https://www.cdc.gov/asthma/most_recent_data_states.htm>
+
+Environmental Protection Agency. (n.d.). *Outdoor air quality data*. U.S. Environmental Protection Agency. <https://www.epa.gov/outdoor-air-quality-data>
