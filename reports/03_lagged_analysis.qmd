@@ -1,0 +1,191 @@
+---
+title: "Lagged PM2.5 and Asthma Analysis"
+author: "Pragya, Shradha, Sania, Anish"
+date: "May 6, 2026"
+
+format:
+  pdf:
+    toc: true
+
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## Overview
+
+This section explores whether PM2.5 exposure may have delayed relationships with asthma prevalence across U.S. states. While our earlier exploratory analysis compared pollution levels and asthma outcomes within the same year, we observed that asthma prevalence often remained elevated during the COVID-19 period even when PM2.5 levels declined in many states.
+
+To further investigate this pattern, we created a lagged PM2.5 variable that compares previous-year PM2.5 levels with current asthma prevalence rates. This allows us to explore whether pollution exposure may have delayed respiratory health effects rather than purely immediate relationships.
+
+## Data Preparation
+
+The datasets were merged by state and year after converting PM2.5 state FIPS codes into state abbreviations. We then created a lagged PM2.5 variable representing each state's PM2.5 level from the previous year.
+
+```{r, include=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(knitr)
+
+# Load datasets
+asthma_data <- read_csv("data/asthma_state_2016_2020.csv")
+pm25_data <- read_csv("data/pm25_state_2016_2020.csv")
+
+# Rename first column
+colnames(pm25_data)[1] <- "statefips"
+
+# Create state abbreviations manually
+pm25_data <- pm25_data %>%
+  mutate(
+    state = case_when(
+      statefips == 1 ~ "AL",
+      statefips == 2 ~ "AK",
+      statefips == 4 ~ "AZ",
+      statefips == 5 ~ "AR",
+      statefips == 6 ~ "CA",
+      statefips == 8 ~ "CO",
+      statefips == 9 ~ "CT",
+      statefips == 10 ~ "DE",
+      statefips == 11 ~ "DC",
+      statefips == 12 ~ "FL",
+      statefips == 13 ~ "GA",
+      statefips == 15 ~ "HI",
+      statefips == 16 ~ "ID",
+      statefips == 17 ~ "IL",
+      statefips == 18 ~ "IN",
+      statefips == 19 ~ "IA",
+      statefips == 20 ~ "KS",
+      statefips == 21 ~ "KY",
+      statefips == 22 ~ "LA",
+      statefips == 23 ~ "ME",
+      statefips == 24 ~ "MD",
+      statefips == 25 ~ "MA",
+      statefips == 26 ~ "MI",
+      statefips == 27 ~ "MN",
+      statefips == 28 ~ "MS",
+      statefips == 29 ~ "MO",
+      statefips == 30 ~ "MT",
+      statefips == 31 ~ "NE",
+      statefips == 32 ~ "NV",
+      statefips == 33 ~ "NH",
+      statefips == 34 ~ "NJ",
+      statefips == 35 ~ "NM",
+      statefips == 36 ~ "NY",
+      statefips == 37 ~ "NC",
+      statefips == 38 ~ "ND",
+      statefips == 39 ~ "OH",
+      statefips == 40 ~ "OK",
+      statefips == 41 ~ "OR",
+      statefips == 42 ~ "PA",
+      statefips == 44 ~ "RI",
+      statefips == 45 ~ "SC",
+      statefips == 46 ~ "SD",
+      statefips == 47 ~ "TN",
+      statefips == 48 ~ "TX",
+      statefips == 49 ~ "UT",
+      statefips == 50 ~ "VT",
+      statefips == 51 ~ "VA",
+      statefips == 53 ~ "WA",
+      statefips == 54 ~ "WV",
+      statefips == 55 ~ "WI",
+      statefips == 56 ~ "WY"
+    )
+  )
+
+# Keep needed columns
+pm25_data <- pm25_data %>%
+  dplyr::select(state, year, pm25)
+
+# Merge datasets
+merged_data <- asthma_data %>%
+  left_join(pm25_data, by = c("state", "year"))
+
+# Create lagged variable
+lagged_data <- merged_data %>%
+  group_by(state) %>%
+  arrange(year) %>%
+  mutate(
+    pm25_previous_year = lag(pm25)
+  ) %>%
+  ungroup()
+
+# Remove NA rows
+lagged_data_clean <- lagged_data %>%
+  filter(!is.na(pm25_previous_year))
+```
+
+## Lagged PM2.5 and Asthma Relationship
+
+The figure below compares previous-year PM2.5 levels with current asthma prevalence rates across U.S. states.
+
+```{r}
+ggplot(
+  lagged_data_clean,
+  aes(
+    x = pm25_previous_year,
+    y = asthma_rate
+  )
+) +
+
+  geom_point(
+    size = 3,
+    alpha = 0.7,
+    color = "#8B4513"
+  ) +
+
+  geom_smooth(
+    method = "lm",
+    se = FALSE,
+    color = "#2F4F4F",
+    linewidth = 1.2
+  ) +
+
+  labs(
+    title = "Previous-Year PM2.5 vs Current Asthma Prevalence",
+    subtitle = "State-level analysis across U.S. states (2017–2020)",
+    x = "Previous-Year PM2.5 Level",
+    y = "Current Asthma Rate (%)"
+  ) +
+
+  theme_minimal()
+```
+
+## Summary Table
+
+The table below summarizes the overall averages and correlation observed in the lagged analysis.
+
+```{r}
+lagged_summary <- lagged_data_clean %>%
+  summarize(
+    avg_previous_pm25 =
+      mean(pm25_previous_year, na.rm = TRUE),
+
+    avg_asthma_rate =
+      mean(asthma_rate, na.rm = TRUE),
+
+    correlation =
+      cor(
+        pm25_previous_year,
+        asthma_rate,
+        use = "complete.obs"
+      )
+  )
+
+kable(
+  lagged_summary,
+  caption = "Summary statistics for lagged PM2.5 analysis."
+)
+```
+
+## Interpretation
+
+The lagged analysis suggests a weak negative relationship between previous-year PM2.5 levels and current asthma prevalence across U.S. states. While the relationship is not extremely strong, the trend line indicates that states with higher prior pollution exposure often experienced somewhat higher asthma prevalence in subsequent years.
+
+This finding is particularly interesting given our earlier observation that asthma prevalence remained elevated during the COVID-19 period even as PM2.5 levels declined in many states. One possible explanation is that respiratory health outcomes may respond gradually to environmental exposure rather than immediately within the same year.
+
+At the same time, the considerable variability across states suggests that additional factors beyond PM2.5 levels likely influence asthma outcomes. Differences in healthcare access, demographics, indoor air quality, smoking rates, socioeconomic conditions, and state-level policies may all contribute to variation in asthma prevalence.
+
+## Conclusion
+
+This exploratory lagged analysis provides additional insight into the relationship between air pollution and asthma prevalence across the United States. Although the relationship between PM2.5 exposure and asthma outcomes appears more complex than a simple same-year comparison, the results suggest that delayed environmental effects may be an important area for further investigation.

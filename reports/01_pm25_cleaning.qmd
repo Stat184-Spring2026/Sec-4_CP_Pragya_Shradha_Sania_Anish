@@ -15,8 +15,6 @@ execute:
 This report analyzes PM2.5 air pollution levels across U.S. states from 2016–2020.  
 The dataset was preprocessed and aggregated to state-year averages using CDC data.
 
----
-
 ```{r, include=FALSE}
 library(tidyverse)
 library(knitr)

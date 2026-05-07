@@ -14,6 +14,7 @@ execute:
 
 This report analyzes the relationship between PM2.5 air pollution levels and asthma prevalence across U.S. states from 2016–2020. The goal is to explore whether higher air pollution is associated with higher asthma rates.
 
+------------------------------------------------------------------------
 ---
 
 ## Load and Merge Data
@@ -28,6 +29,7 @@ combined_data <- pm25_state %>%
   inner_join(asthma_state, by = c("state", "year"))
 ```
 
+------------------------------------------------------------------------
 ---
 
 ## Preview Data
@@ -36,6 +38,7 @@ combined_data <- pm25_state %>%
 head(combined_data)
 ```
 
+------------------------------------------------------------------------
 ---
 
 ## PM2.5 vs Asthma Relationship
@@ -52,6 +55,7 @@ ggplot(combined_data, aes(x = pm25, y = asthma_rate)) +
   theme_minimal()
 ```
 
+------------------------------------------------------------------------
 ---
 
 ## Trends Over Time
@@ -70,6 +74,7 @@ ggplot(combined_data, aes(x = year)) +
   theme_minimal()
 ```
 
+------------------------------------------------------------------------
 ---
 
 ## Correlation
@@ -78,6 +83,7 @@ ggplot(combined_data, aes(x = year)) +
 cor(combined_data$pm25, combined_data$asthma_rate, use = "complete.obs")
 ```
 
+------------------------------------------------------------------------
 ---
 
 ## Key Findings
@@ -86,6 +92,7 @@ The scatterplot suggests a positive relationship between PM2.5 levels and asthma
 
 The time trend plot shows that both PM2.5 levels and asthma rates fluctuate over time, with no dramatic drop in 2020 despite reduced activity during the COVID-19 pandemic. This suggests that air pollution and asthma are influenced by multiple long-term factors beyond short-term changes.
 
+------------------------------------------------------------------------
 ---
 
 ## Summary
@@ -97,6 +104,9 @@ This analysis provides evidence of a potential association between air pollution
 
 This section visualizes how PM2.5 pollution and asthma prevalence vary across U.S. states.
 
+![](asthmaprevalencemap.png)
+
+This map show that certain states consistently experience higher levels of air pollution and asthma prevalence. Regions with elevated PM2.5 levels often overlap with areas that report higher asthma prevalence, suggesting a possible geographic pattern in environmental health risks. These patterns highlight potential environmental health disparities across regions. Further analysis could examine regional policy impacts.
 ```{r}
 library(usmap)
 
