@@ -65,7 +65,13 @@ ggplot(pm25_state, aes(x = year, y = pm25, group = state)) +
   ) +
   theme_minimal()
 ```
+## PM2.5 Analysis
 
+From 2016 to 2020, PM2.5 levels show an overall pattern of change across U.S. states. The summary table helps compare the average, minimum, and maximum PM2.5 values for each year. This makes it easier to see whether pollution levels increased or decreased over time.
+
+The line graph shows that PM2.5 levels vary by state, meaning some states consistently had higher pollution levels than others. The darker national average line gives a clearer view of the overall trend across the country. Although there are differences between states, the graph suggests that PM2.5 levels generally stayed within a similar range during this time period.
+
+This analysis is important because PM2.5 pollution can affect respiratory health. By looking at pollution trends first, we can later compare them with asthma prevalence and asthma-related mortality to see whether states with higher pollution also experience higher asthma impacts.
 ---
 
 ## Key Findings
