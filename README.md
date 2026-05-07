@@ -92,7 +92,7 @@ Branches
 ## Authors
 For questions or comments, please contact:
 
-- Pragya: pvs5791@psu.edu OR @pragyuh on GitHub  
-- Shradha: sqg6076@psu.edu OR @shradhag0906 on GitHub  
-- Sania: sjt5987@psu.edu OR @sanialolidk on GitHub  
-- Anish: abc6715@psu.edu OR @abc6715 on GitHub  
+- Pragya Sinha: pvs5791@psu.edu OR @pragyuh on GitHub  
+- Shradha Gudiseva: sqg6076@psu.edu OR @shradhag0906 on GitHub  
+- Sania Thankan: sjt5987@psu.edu OR @sanialolidk on GitHub  
+- Anish Chitnis: abc6715@psu.edu OR @abc6715 on GitHub  
