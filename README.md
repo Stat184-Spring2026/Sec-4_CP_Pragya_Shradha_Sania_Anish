@@ -5,24 +5,38 @@ This repository contains our group project analyzing the relationship between PM
 ---
 
 ## Overview
-This project analyzes the relationship between PM2.5 air pollution levels and asthma prevalence and mortality across U.S. states. The project focuses on identifying trends over time, with particular attention to changes during the COVID-19 pandemic.
+This project investigates the relationship between PM2.5 air pollution levels and asthma prevalence across U.S. states from 2016–2020, with particular attention to changes during the COVID-19 pandemic.
 
-Using publicly available datasets via the EPA, ArcGIS, CDC, we explore whether higher pollution levels are associated with worse asthma outcomes and how these relationships may have evolved from 2016–2020.
+Using publicly available datasets from the EPA, CDC, and ArcGIS, we analyze how pollution levels and asthma outcomes evolved over time and across regions of the United States. While prior research often suggests that higher air pollution is associated with worse respiratory health outcomes, preliminary exploratory analysis in our project revealed a more complicated pattern during the COVID-19 period: PM2.5 levels declined in many states while asthma prevalence remained elevated or continued to rise.
+
+To better understand these trends, our project explores possible delayed or lagged relationships between pollution exposure and asthma outcomes, regional variation across states, and differences between pre-COVID and COVID-era trends. Through exploratory data analysis, visualization, and state-level comparisons, we aim to better understand how environmental and public health patterns interacted during a period of major societal disruption.
+
 
 ---
 
 ## Interesting Insight
-*To be added after analysis is completed.*
+One of the most interesting findings from our preliminary exploratory analysis was that the relationship between PM2.5 levels and asthma outcomes appeared to be more complex than we initially expected. While we originally planned to focus only on direct year-by-year comparisons between pollution levels and asthma prevalence, some of our early visualizations suggested that changes in asthma outcomes did not immediately match changes in PM2.5 levels.
+
+In particular, we observed that PM2.5 levels declined in many states during the COVID-19 period while asthma prevalence often remained elevated or continued to increase. This led us to consider whether pollution exposure may have delayed or lagged effects on respiratory health outcomes rather than purely immediate effects. As a result, our project expanded to explore possible lagged relationships between PM2.5 exposure and asthma trends across U.S. states.
 
 ---
 
 ## Data Sources and Acknowledgements
-The datasets used in this project include:
+The datasets used in this project are:
 
-- PM2.5 air pollution data from the Environmental Protection Agency (EPA): https://www.epa.gov/outdoor-air-quality-data
-- USA Particulate Matter (PM) 2.5 between 1998-2016: https://hub.arcgis.com/maps/6f250198d8e4461db70a1b5f055172fb/about
-- Daily Census Tract-Level PM2.5 Concentrations, 2016-2020: https://ephtracking.cdc.gov/DataExplorer/?c=11
-- Asthma prevalence and mortality data from the Centers for Disease Control and Prevention (CDC): https://www.cdc.gov/asthma/most_recent_data_states.htm  
+- PM2.5 air pollution data from the Environmental Protection Agency (EPA):
+https://www.epa.gov/outdoor-air-quality-data
+- USA Particulate Matter (PM) 2.5 between 1998-2016
+https://hub.arcgis.com/maps/6f250198d8e4461db70a1b5f055172fb/about
+- Daily Census Tract-Level PM2.5 Concentrations, 2016-2020
+https://ephtracking.cdc.gov/DataExplorer/?c=11
+- Asthma prevalence and mortality data from the Centers for Disease Control and Prevention (CDC): https://www.cdc.gov/asthma/most_recent_data_states.htm
+  - 2016 Archived State or Territory Asthma Data:
+https://www.cdc.gov/asthma/archivedata/2016/2016-archived-data-states.html
+  - 2017 Archived State or Territory Asthma Data: https://www.cdc.gov/asthma/archivedata/2017/2017_archived_states_territory.html
+  - 2018 Archived State or Territory Asthma Data: https://www.cdc.gov/asthma/archivedata/2018/2018_archived_states_territory.html
+  - 2019 Archived State or Territory Asthma Data: https://www.cdc.gov/asthma/archivedata/2019/2019_archived_states_territory.html
+  - 2020 Archived State or Territory Asthma Data: https://www.cdc.gov/asthma/archivedata/2020/2020_archived_states_territory.html
 
 These datasets are publicly available, real-world sources that can be linked by state and year.
 
@@ -47,19 +61,27 @@ For a more detailed breakdown of tasks, see `PLAN.md`.
 ---
 
 ## Repo Structure
+Branches
+- `Main`
+  - `data/`
+    - `asthma_state_2016_2020.csv`: Cleaned Asthma Rate dataset (state-year level)
+    - `mortality_state_2016_2020.csv`: Cleaned Mortality Rate dataset (state-year level)
+    - `pm25_state_2016_2020.csv`: Cleaned PM2.5 dataset (state-year level)
 
-- `data/`
-  - `pm25_state_2016_2020.csv`: Cleaned PM2.5 dataset (state-year level)
+  - `reports/`
+    - `01_pm25_cleaning.qmd`: Data cleaning and preprocessing (PM2.5)
+    - `01_pm25_cleaning.pdf`: Rendered PM2.5 report
+    - `02_analysis.pdf`: Analysis
+    - `02_analysis.qmd`: Analysis report
+  - `README.md`: Project overview and documentation
+  - `PLAN.md`: Detailed project plan including goals, steps, and responsibilities
+  - `.gitignore`: Specifies files to ignore in version control
+  - `.lintr`: Linting rules for consistent R code style
 
-- `reports/`
-  - `01_pm25_cleaning.qmd`: Data cleaning and preprocessing (PM2.5)
-  - `01_pm25_cleaning.html`: Rendered PM2.5 report
-  - `02_analysis.qmd` / `02_analysis.html`: (To be added) Combined PM2.5 + asthma analysis
-
-- `README.md`: Project overview and documentation
-- `PLAN.md`: Detailed project plan including goals, steps, and responsibilities
-- `.gitignore`: Specifies files to ignore in version control
-- `.lintr`: Linting rules for consistent R code style
+- `anish-analysis`: Anish
+- `pragya-analysis`: Pragya
+- `sania-analysis`: Sania
+- `shradha-analysis`: Shradha
 ---
 
 ## Authors
