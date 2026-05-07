@@ -62,22 +62,27 @@ For a more detailed breakdown of tasks, see `PLAN.md`.
 
 ## Repo Structure
 Branches
-- `Main`
+- `main`
   - `data/`
     - `asthma_state_2016_2020.csv`: Cleaned Asthma Rate dataset (state-year level)
     - `mortality_state_2016_2020.csv`: Cleaned Mortality Rate dataset (state-year level)
     - `pm25_state_2016_2020.csv`: Cleaned PM2.5 dataset (state-year level)
-
+  - `figures/`: Contains the graphs utilized in the final report
+  - `presentation/`: Contains the WIP presentation
   - `reports/`
     - `01_pm25_cleaning.qmd`: Data cleaning and preprocessing (PM2.5)
     - `01_pm25_cleaning.pdf`: Rendered PM2.5 report
-    - `02_analysis.pdf`: Analysis
-    - `02_analysis.qmd`: Analysis report
+    - `02_analysis.qmd`: Analysis comparing PM2.5 levels and asthma prevalence across the U.S.
+    - `02_analysis.pdf`: Rendered combined analysis report
+    - `03_lagged_analysis.qmd`: Analysis comparing asthma rates across the U.S. with PM2.5 levels using lagged analysis
+    - `03_lagged_analysis.pdf`: Rendered lagged analysis
+    - `final_pm25_asthma_report.qmd`: Final report
+    - `final_pm25_asthma_report.pdf`: Rendered final report
   - `README.md`: Project overview and documentation
   - `PLAN.md`: Detailed project plan including goals, steps, and responsibilities
   - `.gitignore`: Specifies files to ignore in version control
   - `.lintr`: Linting rules for consistent R code style
-
+  
 - `anish-analysis`: Anish
 - `pragya-analysis`: Pragya
 - `sania-analysis`: Sania
